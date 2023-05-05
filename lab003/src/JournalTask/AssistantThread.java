@@ -3,19 +3,28 @@ package JournalTask;
 import java.util.Random;
 
 public class AssistantThread extends Thread {
-    private Group _groupToWriteMarks;
-    private Journal _journal;
-    public AssistantThread(Group groupToWriteMarks, Journal journal){
-        _groupToWriteMarks = groupToWriteMarks;
-        _journal = journal;
+    private final Group group;
+    private final Journal journal;
+
+    public AssistantThread(Group group, Journal journal){
+        this.group = group;
+        this.journal = journal;
     }
+
     @Override
     public void run(){
-        for(int i=0;i<100;i++){
-            for (Student student : _groupToWriteMarks.Students) {
+        for (int i = 0; i < Journal.weeksToMark; i++) {
+            for (Student student : group.Students) {
                 Random rand = new Random();
-                _journal.putMark(rand.nextInt(101),student,_groupToWriteMarks);
+                journal.putMark(rand.nextInt(101), student, group);
+                System.out.println("Assistant graded student");
             }
+        }
+
+        try {
+            Thread.sleep(0);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
     }
 }

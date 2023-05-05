@@ -23,7 +23,6 @@ public class Main {
         assistant1.start();
         assistant2.start();
         assistant3.start();
-
         teacher1.start();
 
         try{
@@ -34,7 +33,6 @@ public class Main {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        System.out.println(journal.groupMap);
-        System.out.println(Journal.marks);
+        journal.printMarks();
     }
 }

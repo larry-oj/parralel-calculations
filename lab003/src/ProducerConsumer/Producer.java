@@ -13,6 +13,9 @@ public class Producer implements Runnable {
         Random random = new Random();
         for (int i = 0; i < 100000; i++){
             drop.produce(random.nextInt(500));
+            try {
+                Thread.sleep(random.nextInt(5000));
+            } catch (InterruptedException ignored) {}
         }
 
     }

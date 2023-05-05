@@ -24,12 +24,12 @@ public class Drop {
             }
             int item = items[currentCount-1];
             currentCount--;
-            System.out.println("Take element: " + item + " Current Size: " + currentCount);
+            System.out.println("Consume element: " + item);
             notFull.signalAll();
             return item;
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
-        }finally{
+        } finally {
             _lock.unlock();
         }
     }
@@ -42,11 +42,11 @@ public class Drop {
             }
             items[currentCount] = item;
             currentCount++;
-            System.out.println("Put element: " + item + " Current Size: " + currentCount);
+            System.out.println("Produce element: " + item);
             notEmpty.signalAll();
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
-        }finally{
+        } finally {
             _lock.unlock();
         }
     }
