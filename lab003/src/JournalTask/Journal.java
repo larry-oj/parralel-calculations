@@ -6,7 +6,7 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class Journal {
     public static int marks = 0;
-    public static int weeksToMark = 2;
+    public static int weeksToMark = 3;
     private final Lock locker = new ReentrantLock();
     Map<Group, Map<Student, List<Integer>>> groupMap = new HashMap<>();
     public Journal(List<Group> groups){

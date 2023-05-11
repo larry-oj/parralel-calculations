@@ -3,7 +3,7 @@ package ProducerConsumer;
 import java.util.Random;
 
 public class Consumer implements Runnable {
-    private Drop drop;
+    private final Drop drop;
 
     public Consumer(Drop drop) {
         this.drop = drop;
@@ -14,7 +14,7 @@ public class Consumer implements Runnable {
         for (int i = 0; i < 100000; i++){
             drop.consume();
             try {
-                Thread.sleep(random.nextInt(5000));
+                Thread.sleep(5000);
             } catch (InterruptedException ignored) {}
         }
     }

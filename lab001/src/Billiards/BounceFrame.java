@@ -91,8 +91,7 @@ public class BounceFrame extends JFrame {
         canvas.add(b);
         BallThread thread = new BallThread(b);
         thread.start();
-        System.out.println("Thread name = " +
-                thread.getName());
+        System.out.println("Thread name = " + thread.getName());
     }
 
     public void addBall(Color color){
@@ -106,8 +105,7 @@ public class BounceFrame extends JFrame {
             thread.setPriority(MIN_PRIORITY);
         }
         thread.start();
-        System.out.println("Thread name = " +
-                thread.getName());
+        System.out.println("Thread name = " + thread.getName());
     }
 
     public void addBall(Color color, int x, int y){
@@ -121,8 +119,7 @@ public class BounceFrame extends JFrame {
             thread.setPriority(MIN_PRIORITY);
         }
         thread.start();
-        System.out.println("Thread name = " +
-                thread.getName());
+        System.out.println("Thread name = " + thread.getName());
     }
 
     public void addBall(boolean joinAble){
@@ -137,8 +134,7 @@ public class BounceFrame extends JFrame {
         }
         thread.start();
         prevThread = thread;
-        System.out.println("Thread name = " +
-                thread.getName());
+        System.out.println("Thread name = " + thread.getName());
     }
 
     public static void incCaughtText() {

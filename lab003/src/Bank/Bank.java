@@ -20,14 +20,14 @@ public class Bank {
         accounts[to] += amount;
         transactionsNum++;
         if (transactionsNum % NTEST == 0)
-            test();
+            printTransactionsData();
     }
     public synchronized void transferSync(int from, int to, int amount) {
         accounts[from] -= amount;
         accounts[to] += amount;
         transactionsNum++;
         if (transactionsNum % NTEST == 0)
-            test();
+            printTransactionsData();
     }
     public void transferSyncBlock(int from, int to, int amount) {
         synchronized (this){
@@ -35,7 +35,7 @@ public class Bank {
             accounts[to] += amount;
             transactionsNum++;
             if (transactionsNum % NTEST == 0)
-                test();
+                printTransactionsData();
         }
 
     }
@@ -46,12 +46,12 @@ public class Bank {
             accounts[to] += amount;
             transactionsNum++;
             if (transactionsNum % NTEST == 0)
-                test();
+                printTransactionsData();
         }finally{
             locker.unlock();
         }
     }
-    public void test() {
+    public void printTransactionsData() {
         int sum = 0;
         for (int account : accounts)
             sum += account;

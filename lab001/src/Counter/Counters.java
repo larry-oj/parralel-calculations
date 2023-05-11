@@ -12,13 +12,13 @@ public class Counters {
         int opsCount = 100000;
         for(ICounter counter : counters) {
             try {
-                testCounter(counter, threadNum, opsCount);
+                runCounter(counter, threadNum, opsCount);
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
     }
-    public static void testCounter(ICounter counter, int threadNum, int countOfCalcs) {
+    public static void runCounter(ICounter counter, int threadNum, int countOfCalcs) {
         long start = System.currentTimeMillis();
         Thread[] threads = new Thread[threadNum];
         for (int i = 0; i < threadNum; i++) {
@@ -36,8 +36,9 @@ public class Counters {
                 });
             }
         }
-        for (int i = 0; i < threadNum; i++)
+        for (int i = 0; i < threadNum; i++) {
             threads[i].start();
+        }
         for (int i = 0; i < threadNum; i++) {
             try {
                 threads[i].join();

@@ -3,8 +3,8 @@ package JournalTask;
 import java.util.UUID;
 
 public class Student {
-     private UUID _id;
+     private UUID id;
      public Student(){
-         _id = UUID.randomUUID();
+         id = UUID.randomUUID();
      }
 }

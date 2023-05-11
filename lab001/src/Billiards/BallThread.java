@@ -21,12 +21,12 @@ public class BallThread extends Thread {
     @Override
     public void run() {
         try {
-            if(isForJoining && parentThread != null)
+            if(isForJoining && parentThread != null) {
                 parentThread.join();
+            }
             while (true) {
                 b.move();
-                System.out.println("Thread name = "
-                        + Thread.currentThread().getName());
+                System.out.println("Thread name = " + Thread.currentThread().getName());
                 Thread.sleep(2);
             }
         } catch (InterruptedException ex) {

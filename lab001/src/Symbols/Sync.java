@@ -1,20 +1,20 @@
 package Symbols;
 
 public class Sync {
-    private boolean permission;
+    private boolean turn;
     private int symbols;
     private int lines;
     private boolean stop;
 
     public Sync() {
-        permission = true;
+        turn = true;
         symbols = 0;
         lines = 0;
         stop = false;
     }
 
-    public synchronized boolean getPermission() {
-        return permission;
+    public synchronized boolean getTurn() {
+        return turn;
     }
 
     public synchronized boolean isStop() {
@@ -22,7 +22,7 @@ public class Sync {
     }
 
     public synchronized void waitAndChange(boolean control, char s) {
-        while (getPermission() != control) {
+        while (getTurn() != control) {
             try {
                 wait();
             } catch (InterruptedException ex) {
@@ -34,7 +34,7 @@ public class Sync {
             return;
         }
         System.out.print(s);
-        permission = !permission;
+        turn = !turn;
         symbols++;
         if (symbols == 100) {
             symbols = 0;

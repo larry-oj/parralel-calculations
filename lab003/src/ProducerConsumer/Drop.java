@@ -5,9 +5,9 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class Drop {
-    final Lock _lock = new ReentrantLock();
-    final Condition notFull = _lock.newCondition();
-    final Condition notEmpty = _lock.newCondition();
+    final Lock lock = new ReentrantLock();
+    final Condition notFull = lock.newCondition();
+    final Condition notEmpty = lock.newCondition();
     final int[] items;
     int currentCount;
     int totalItemsCount;
@@ -17,7 +17,7 @@ public class Drop {
         currentCount = 0;
     }
     public int consume()  {
-        _lock.lock();
+        lock.lock();
         try{
             while(currentCount == 0){
                 notEmpty.await();
@@ -30,12 +30,12 @@ public class Drop {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         } finally {
-            _lock.unlock();
+            lock.unlock();
         }
     }
 
     public void produce(int item) {
-        _lock.lock();
+        lock.lock();
         try{
             while(currentCount == totalItemsCount){
                 notFull.await();
@@ -47,7 +47,7 @@ public class Drop {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         } finally {
-            _lock.unlock();
+            lock.unlock();
         }
     }
 }
