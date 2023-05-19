@@ -11,7 +11,7 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 
 public class TaskFour {
-    private final static String[] wordsToSearch = {"world", "as"};
+    private final static String[] wordsToSearch = {"exquisite", "as"};
 
     public static void main(String[] args) throws IOException {
         var filesPath = new File("src/files").getAbsolutePath();

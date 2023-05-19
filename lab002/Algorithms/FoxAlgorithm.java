@@ -17,7 +17,7 @@ public final class FoxAlgorithm implements IAlgorithm {
         this.secondMatrix = secondMatrix;
     }
 
-    private int findNumberOfSubMatrixes(int threadsNumber, int rows) {
+    private int findNumberOfSubs(int threadsNumber, int rows) {
         var numberOfSubMatrixes = Math.min(threadsNumber, this.firstMatrix.getRows());
         
         var i = numberOfSubMatrixes;
@@ -46,7 +46,7 @@ public final class FoxAlgorithm implements IAlgorithm {
     public Result solve(int threadsNumber) {
         var startTime = System.currentTimeMillis();
 
-        var subMatrixNum = findNumberOfSubMatrixes(threadsNumber, firstMatrix.getRows());
+        var subMatrixNum = findNumberOfSubs(threadsNumber, firstMatrix.getRows());
         var threadPool = Executors.newFixedThreadPool(threadsNumber);
 
         var fSplitted = Matrix.splitMatrix(this.firstMatrix, subMatrixNum);
@@ -78,14 +78,13 @@ public final class FoxAlgorithm implements IAlgorithm {
         }
 
         var endTime = System.currentTimeMillis();
-        var result = new Result(
+
+        return new Result(
             new Matrix(
                 resultMatrix,
                 this.firstMatrix.getRows(),
                 this.secondMatrix.getColumns()),
             endTime - startTime);
-
-        return result;
     }
 
     @Override
